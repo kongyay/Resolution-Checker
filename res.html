@@ -1,0 +1,62 @@
+<style>
+	#center {
+	  in-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+	  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+	  display: flex;
+	  align-items: center;
+	  position: absolute;
+	  justify-content: center;
+	  flex-direction: column;
+	  text-align: center;
+
+	  width: 100%;
+	  
+	  color: #222;
+	  font-size: 18px;
+	  opacity: 1;
+
+
+	}
+	.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 50px rgba(0,0,0,0.3) inset;
+}
+
+</style>
+<html><head>
+	<script type="text/javascript" src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
+</head><body>
+	<div id="center">
+	<h1 id='res'></h1>
+	<h1 id='ratio'></h1></div>
+	<div class='vignette'></div>
+    <script type="text/javascript">
+    	resize();
+    	$(document).ready(function() {
+    		$(window).resize(function(){
+			 	resize();
+			});
+    	});
+    	
+
+		function resize () {
+            var w = $(window).width();
+        	var h = $(window).height();
+		 	var r = gcd (w, h);
+		 	$('#res').html("Dimensions = "+ w+ " x "+ h+ "<br>");
+		 	$('#ratio').html("Aspect     = "+ w/r+ ":"+ h/r);
+
+        }
+
+        function gcd (a, b) {
+            return (b == 0) ? a : gcd (b, a%b);
+        }
+        
+        
+    </script>
+</body></html>
